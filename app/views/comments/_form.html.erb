@@ -1,0 +1,18 @@
+<div class="row">
+<div class="col-md-6">
+<%= form_for([@post, Comment.new], :remote=>'true', :controller => 'comments', :action => 'create') do |f| %>
+<div class="row">
+ <div class="col-md-9">
+  <div class="form-group">
+    <%= f.text_field :bdy, id: :comment_bdy, class:"form-control" %>
+  </div>
+  </div>
+  <div class="col-md-3">
+  <div class="actions">
+    <%= f.submit "Yorum At", class:"form-action btn btn-info"  %>
+  </div>
+</div>
+</div>
+<% end %>
+</div>
+</div>

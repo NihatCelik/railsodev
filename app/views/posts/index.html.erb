@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Kayıtlar</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Kayıt ID</th>
+      <th>Baslik</th>
+      <th>İçerik</th>
+      <th>Resim</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.baslik %></td>
+        <td><%= post.icerik %></td>
+        <td style="text-align:center"><%= image_tag post.image.url(:medium) %></td>
+        <td><%= link_to 'Detaya Git', post %></td>
+        <td><%= link_to 'Düzenle', edit_post_path(post) %></td>
+        <td><%= link_to 'Sil', post, method: :delete, data: { confirm: 'Silmek İstediğine Emin Misin?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Yeni Post Ekle', new_post_path %>

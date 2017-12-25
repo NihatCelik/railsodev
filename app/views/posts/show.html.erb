@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Baslik:</strong>
+  <%= @post.baslik %>
+</p>
+
+<p>
+  <strong>Icerik:</strong>
+  <%= @post.icerik %>
+</p>
+  
+<p>
+   <%= image_tag @post.image.url(:medium),class:"img img-responsive" if @post.image? %>
+</p>
+
+
+
+
+<%= link_to 'Düzenle', edit_post_path(@post) %> |
+<%= link_to 'Geri', posts_path %>
+<%=render 'comments/form'%>
+
+ Bunu beğenler(<%=@likeds.count%>) <br/>
+ <% @likeds.each do |l|%>
+<%=l.user.name%>
+ <% end %>
+
+ <div id="<%=@post.id%>">
+ <%if Like.where(user:current_user, post:@post).count>0%>
+ <%= link_to "", unlike_post_path(@post), class:"glyphicon glyphicon-heart",remote: :true, method: :put %>
+<%else%>
+<%= link_to "", like_post_path(@post), class:"glyphicon glyphicon-heart-empty",remote: :true, method: :put %>
+<%end%>
+ </div>
+
+<div id="comments">
+<%@comments.each do |c|%>
+<%=image_tag c.user.image.url(:mini) if c.user.image?%> <em> 
+<%=c.user.name%> </em> <b><%=c.bdy%> </b>    <br/>
+ <%end%>
+</div>

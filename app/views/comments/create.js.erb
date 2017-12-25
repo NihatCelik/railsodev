@@ -1,0 +1,1 @@
+$('#comments').append('<%=image_tag @comment.user.image.url(:mini) if @comment.user.image? %> <em><%=@comment.user.name%> </em><b> <%=@comment.bdy%> </b><br/>');
